@@ -175,7 +175,7 @@
 
         "http_header": {"User-Agent":"Mozilla/5.0"}, // 定义http头部，访问消息推送接口时使用
         "variable": { // 声明变量,在hooks参数中的url参数和params参数中使用大括号{}可直接引用在此声明的变量，"msg_"开头变量为程序内置变量不允许赋值
-            "msg_simple": null, // msg_simple为简化的日志消息，用于下面hooks消息推送接口引用
+            "msg_simple": "好耶，脚本运行完了！", // msg_simple为简化的日志消息，用于下面hooks消息推送接口引用
         //  "msg_raw": null,    // msg_raw为完整的日志消息，用于下面hooks消息推送接口引用，若不引用最好注释掉，否则占用内存空间
 
             "title": "B站助手脚本消息推送", // 此为自定义变量，用于下面hooks消息推送接口引用
@@ -186,7 +186,7 @@
             "SKEY": "" */
         },
         "hooks": [ // 在这里以数组的形式定义所有消息推送回调接口
-            {
+            /*{
                 "enable": false, // 开关，需要开启请直接把本项删除或设置为true
                 "name": "server酱消息推送", // webhook名称，仅用于日志显示不用于实际消息推送
                 "msg_separ": "\n\n",       // 消息分隔符，推送消息时将每一条消息用两个换行符(\n)隔开
@@ -196,7 +196,7 @@
                     "text": "{title}",
                     "desp": "{msg_simple}" 
                 }
-            }/*, //若要实现其他消息推送接口，需要自己查阅相关文档构建method，url和params三个参数，下面是邮箱推送和telegram_bot推送的例子，其他平台自行探索
+            }, //若要实现其他消息推送接口，需要自己查阅相关文档构建method，url和params三个参数，下面是邮箱推送和telegram_bot推送的例子，其他平台自行探索
             {
                 "enable": false,
                 "name": "邮箱消息推送",
@@ -218,16 +218,17 @@
                     "chat_id": "{telegram_bot_chatid}",
                     "text": "{msg_simple}"
                 }
-            },
+            },*/
             {
-                "enable": false,
+                "enable": true,
                 "name": "酷推个人QQ消息推送",
                 "method": 3,
                 "url": "https://push.xuthus.cc/send/{SKEY}",
                 "params": {
+                    "t": "{title}",
                     "c": "{msg_simple}"
                 }
-            }*/
+            }
         ]
     },
     "log_file": "BiliExp.log",   // 输出日志文件，不输出请留空，也可填写完整路径
